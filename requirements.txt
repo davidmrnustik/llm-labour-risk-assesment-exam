@@ -1,0 +1,7 @@
+greenlet==3.2.2
+packaging==25.0
+pillow==11.2.1
+playwright==1.52.0
+pyee==13.0.0
+pytesseract==0.3.13
+typing_extensions==4.13.2

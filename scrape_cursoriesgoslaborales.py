@@ -12,6 +12,7 @@ COURSE_URL = f"{BASE_URL}/lecciones/introduccion-al-curso-de-prevencion-de-riesg
 COOKIES_PATH = "cookies.json"
 OUTPUT_DIR = Path("cursoriesgoslaborales")
 IMG_DIR = OUTPUT_DIR / "images"
+TEXT_DIR = OUTPUT_DIR / "texts"
 
 def sanitize_filename(name):
     return re.sub(r'[\\/*?:"<>|]', "_", name)
@@ -27,6 +28,7 @@ def extract_text_from_image(image):
 
 def scrape_courses():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    TEXT_DIR.mkdir(parents=True, exist_ok=True)
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
@@ -106,7 +108,7 @@ def scrape_courses():
                     img_filename = f"{img_title}_lesson_{lesson_idx:02d}_img_{img_idx}.png"
                     img_path = IMG_DIR / img_filename
                     img_elem.screenshot(path=str(img_path))
-                    image_md.append(f"![img](./images/{img_filename})")
+                    image_md.append(f"![img](../images/{img_filename})")
                     extracted = extract_text_from_image(img_path)
                     if extracted:
                         ocr_md.append(f"### Image {img_idx}\n\n{extracted}")
@@ -118,7 +120,7 @@ def scrape_courses():
                 except Exception as e:
                     print(f"Failed to screenshot or OCR image: {img_filename} - {e}")
             filename = f"{lesson_title}.md"
-            with open(f"{OUTPUT_DIR}/{filename}", "w", encoding="utf-8") as f:
+            with open(f"{TEXT_DIR}/{filename}", "w", encoding="utf-8") as f:
                 f.write(f"# {lesson_title}\n\n")
                 f.write(f"URL: {lesson_url}\n\n")
                 f.write("## Main content\n\n")

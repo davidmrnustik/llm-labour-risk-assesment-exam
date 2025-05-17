@@ -40,6 +40,9 @@ To use a different Ollama model, replace
 > `qwen3:14b` above and update 
 > `MODEL = "<your-model-name>"` in the code.
 
+## Set up OpenAI api key
+Create a file `.env` and add a key `OPENAI_API_KEY` with you api key from https://openai.com/api/
+
 ## Scrape the data from courses
 
  ```bash

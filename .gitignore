@@ -1,5 +1,7 @@
-cursoriesgoslaborales/
+knowledge_content/
 .venv/
 .idea/
 __pycache__/
 .env
+cookies.json
+vector_db_courses/

@@ -15,7 +15,7 @@ import gradio as gr
 # Load environment variables
 load_dotenv()
 openai_api_key = os.getenv('OPENAI_API_KEY')
-OUTPUT_DIR = Path("knowledge_content/texts")
+OUTPUT_DIR = Path("knowledge_content")
 MODEL = "qwen3:14b" # Running in ollama on local
 db_name = "vector_db_courses"
 
@@ -28,7 +28,7 @@ def add_metadata(doc, doc_type):
 folders = glob.glob(f'{OUTPUT_DIR}/*')
 documents = []
 
-# Read files by TextLoader and store them into a list of texts
+# Read folders by DirectoryLoader and store them into a list of documents
 # loader_cls: Loader class to use for loading files
 for folder in folders:
     doc_type = os.path.basename(folder)
@@ -102,4 +102,4 @@ with gr.Blocks() as demo:
     demo.queue()
 
 if __name__ == '__main__':
-    demo.launch(server_name="0.0.0.0", server_port=7860)
+    demo.launch(server_name="localhost", server_port=8090)

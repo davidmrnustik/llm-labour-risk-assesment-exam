@@ -6,6 +6,8 @@ I chose courses from Coformación as they are accesible without a login. There a
 - basic (30 hours:) https://cursoriesgoslaborales.com/lecciones/introduccion-al-curso-de-prevencion-de-riesgos-laborales/
 - advance (60 hours): https://cursoprl60.com
 
+I followed this project as a reference: https://rafaelviana.com/posts/line-badge 
+
 ---
 
 ## Setup
@@ -38,18 +40,19 @@ To use a different Ollama model, replace
 > `qwen3:14b` above and update 
 > `MODEL = "<your-model-name>"` in the code.
 
-## Scrape the data from LINE Campus
+## Scrape the data from courses
 
-You’ll need your LINE Business ID and saved cookies to pull down the official exam content:
+ ```bash
+ python scrape_course.py --course basic
+ python scrape_course.py --course advanced
+ ```
 
-### Save your cookies
-1. **Run and login**
-    ```bash
-    python save_cookies.py 
-    ```
+## Launch RAG chain with the Gradio IO
+```bash
+python llm.py
+```
 
-2. **Scrape each course’s questions**
-    ```bash
-    python scrape_course.py --course basic
-    python scrape_shiken.py --course advanced
-    ```
+This process builds ChromaDB and sets up the chain.
+In the end, it executes demo.launch() to start Gradio interface.
+
+Navigate to http://localhost:8090, paste your exam question + answer choices and click "Respuesta".

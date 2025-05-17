@@ -1,5 +1,6 @@
 knowledge_content/
 .venv/
+venv
 .idea/
 __pycache__/
 .env

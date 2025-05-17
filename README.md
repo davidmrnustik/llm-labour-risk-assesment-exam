@@ -59,3 +59,10 @@ This process builds ChromaDB and sets up the chain.
 In the end, it executes demo.launch() to start Gradio interface.
 
 Navigate to http://localhost:8090, paste your exam question + answer choices and click "Respuesta".
+
+## Other
+There is a file `calculate_tokens.py` that helps to get total tokens from `knowledge_content` folder, that are used to create embeddings by OpenAIEmbeddings.
+
+```bash
+python calculate_tokens.py
+```
